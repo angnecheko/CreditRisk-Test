@@ -1,6 +1,6 @@
-﻿# Intégration continue et preuves d’exécution
+# Intégration continue et preuves d’exécution
 
-Le [workflow](../.github/workflows/tests.yml) utilise Python 3.13 sur Ubuntu, installe les dépendances, exécute Ruff puis Pytest avec couverture et publie les fichiers JUnit et couverture. Il se déclenche sur push, pull request et lancement manuel. Les deux exécutions vérifiées portent sur le commit `fb50f19`.
+Le [workflow](../.github/workflows/tests.yml) utilise Python 3.13 sur Ubuntu, installe les dépendances, exécute Ruff puis Pytest avec couverture et publie les fichiers JUnit et couverture. Il se déclenche sur push, pull request et lancement manuel. Les deux exécutions distantes vérifiées portent sur le commit `fb50f19` (« Premier commit »). Elles prouvent le fonctionnement du workflow et la remontée d’un échec déclenché manuellement. Les tests enrichis de la version de rendu ont été vérifiés localement avec **51 succès**, **95 % de couverture** et une **sortie 1** en mode volontaire. Une exécution distante du commit de rendu reste à vérifier après publication.
 
 | Exécution | Déclenchement | Conclusion |
 | --- | --- | --- |

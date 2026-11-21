@@ -6,10 +6,19 @@ from app.main import creer_app
 from app.training import entrainer_reference
 
 
+@pytest.fixture(scope="session", params=["1.0.0", "1.0.1"])
+def version_modele(request):
+    return request.param
+
+
 @pytest.fixture(scope="session")
-def chemin_modele(tmp_path_factory):
+def chemin_modele(tmp_path_factory, version_modele):
     chemin = tmp_path_factory.mktemp("modele") / "model.joblib"
-    joblib.dump(entrainer_reference(), chemin)
+    regularisation = 1.0 if version_modele == "1.0.0" else 0.5
+    joblib.dump(
+        entrainer_reference(regularisation=regularisation, version=version_modele),
+        chemin,
+    )
     return chemin
 
 

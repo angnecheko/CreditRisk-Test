@@ -35,3 +35,7 @@ Exemple de demande :
 .venv/Scripts/python.exe -m ruff check .
 .venv/Scripts/python.exe -m pytest --cov=app --cov-report=term-missing
 ```
+
+## Rapports du TP2
+
+[Rapport consolidé](reports/rapport_consolide.md) et [procédure PowerShell détaillée](reports/08_execution_locale.md).

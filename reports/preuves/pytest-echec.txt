@@ -1,4 +1,4 @@
-﻿F                                                                        [100%]
+..................................................F.                     [100%]
 ================================== FAILURES ===================================
 ____________________________ test_echec_volontaire ____________________________
 
@@ -20,5 +20,5 @@ tests\test_regression.py:26: AssertionError
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 =========================== short test summary info ===========================
 FAILED tests/test_regression.py::test_echec_volontaire - AssertionError: Éche...
-1 failed, 1 deselected, 1 warning in 0.16s
+1 failed, 51 passed, 1 warning in 0.54s
 Code de sortie : 1

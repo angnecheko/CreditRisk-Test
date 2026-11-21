@@ -1,4 +1,4 @@
-﻿# Rapport de non-régression
+# Rapport de non-régression
 
 La référence est le pipeline 1.0.0 livré. Le candidat expérimental 1.0.1 conserve les 600 demandes d’entraînement et change uniquement la régularisation de la régression logistique (`C=0.5`). La comparaison repose sur 1 000 nouvelles observations synthétiques générées avec la graine 2026, selon le même mécanisme de simulation. L’artefact candidat est produit pour le contrôle et utilisé temporairement.
 
@@ -12,6 +12,6 @@ Avant les mesures, le [protocole](protocole.json) fixe un seuil de classificatio
 | Écart maximal après rechargement | 0 | 0 | 0 | Conforme |
 | Contrat HTTP sur la demande témoin | 200, score fini, version 1.0.0 | 200, score fini, version 1.0.1 | Version attendue | Conforme |
 
-La suite fonctionnelle complète est mesurée sur la référence. Le candidat a fait l’objet d’un contrôle du contrat HTTP sur la demande témoin et d’un contrôle de l’intervalle des 1 000 probabilités. Les deux versions manquent 45,48 % des défauts simulés. Les tolérances comparent les versions entre elles. L’acceptation métier demande ses propres seuils et des données représentatives.
+Les tests d’API, d’intégration et de robustesse passent sur chacun des deux modèles. Pour le candidat, la sélection ciblée donne **25 succès** : 24 cas utilisant le modèle 1.0.1 et 1 vérification commune du modèle absent. Les mêmes assertions portent sur les codes HTTP, le schéma de sortie, la cohérence du niveau de risque, les métadonnées et les erreurs. Le calcul sur le corpus confirme également que les 1 000 probabilités sont finies et dans l’intervalle attendu. [Preuve JUnit des deux versions](preuves/junit.xml). Les deux versions manquent 45,48 % des défauts simulés. Les tolérances comparent les versions entre elles. L’acceptation métier demande ses propres seuils et des données représentatives.
 
 ![Rappel, F1-score et matrice de confusion de la référence](figures/non-regression.png)

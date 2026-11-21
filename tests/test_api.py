@@ -6,14 +6,15 @@ from fastapi.testclient import TestClient
 from app.main import creer_app
 
 
-def test_prediction_valide(client, demande):
+def test_prediction_valide(client, demande, version_modele):
     reponse = client.post("/predict", json=demande)
     assert reponse.status_code == 200
     resultat = reponse.json()
+    assert set(resultat) == {"probabilite_defaut", "niveau_risque", "version_modele"}
     probabilite = resultat["probabilite_defaut"]
     assert math.isfinite(probabilite) and 0 <= probabilite <= 1
     assert resultat["niveau_risque"] == ("eleve" if probabilite >= 0.5 else "faible")
-    assert resultat["version_modele"] == "1.0.0"
+    assert resultat["version_modele"] == version_modele
 
 
 @pytest.mark.parametrize(
@@ -43,7 +44,9 @@ def test_champ_manquant(client, demande):
 
 
 def test_json_mal_forme(client):
-    reponse = client.post("/predict", content="{", headers={"content-type": "application/json"})
+    reponse = client.post(
+        "/predict", content="{", headers={"content-type": "application/json"}
+    )
     assert reponse.status_code == 422
     assert reponse.json()["detail"][0]["type"] == "json_invalid"
 

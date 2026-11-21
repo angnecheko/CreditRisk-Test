@@ -12,7 +12,7 @@ from app.preprocessing import VARIABLES
 CHEMIN_MODELE = Path("model.joblib")
 
 
-def entrainer_reference():
+def entrainer_reference(*, regularisation: float = 1.0, version: str = "1.0.0"):
     rng = np.random.default_rng(42)
     taille = 600
     age = rng.integers(21, 66, taille)
@@ -24,9 +24,9 @@ def entrainer_reference():
     charge = montant / (duree * revenu)
     score = -1.5 + 3 * charge - 0.05 * anciennete
     defaut = rng.binomial(1, 1 / (1 + np.exp(-score)))
-    modele = make_pipeline(StandardScaler(), LogisticRegression())
+    modele = make_pipeline(StandardScaler(), LogisticRegression(C=regularisation))
     modele.fit(variables, defaut)
-    return {"version": "1.0.0", "variables": VARIABLES, "modele": modele}
+    return {"version": version, "variables": VARIABLES, "modele": modele}
 
 
 if __name__ == "__main__":

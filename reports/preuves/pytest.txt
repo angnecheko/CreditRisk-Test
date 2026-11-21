@@ -1,14 +1,18 @@
-﻿============================= test session starts =============================
+============================= test session starts =============================
 platform win32 -- Python 3.13.2, pytest-8.3.5, pluggy-1.7.0
 rootdir: C:\Users\ANGNECHEKO\Documents\M2\M2-cours\Test Logiciel\Evaluation_2\CreditRisk-Test
 plugins: anyio-4.16.0, cov-6.0.0
-collected 23 items
+collected 52 items
 
-tests\test_api.py ...........                                           [11/23]
-tests\test_integration.py ....                                          [15/23]
-tests\test_regression.py .s                                             [17/23]
-tests\test_robustness.py .....                                          [22/23]
-tests\test_validation.py .                                              [23/23]
+tests\test_api.py ..........                                             [ 19%]
+tests\test_integration.py ......                                         [ 30%]
+tests\test_robustness.py ........                                        [ 46%]
+tests\test_api.py ..........                                             [ 65%]
+tests\test_integration.py ......                                         [ 76%]
+tests\test_robustness.py ........                                        [ 92%]
+tests\test_api.py .                                                      [ 94%]
+tests\test_regression.py .s                                              [ 98%]
+tests\test_validation.py .                                               [100%]
 
 ============================== warnings summary ===============================
 .venv\Lib\site-packages\starlette\testclient.py:37
@@ -22,13 +26,13 @@ tests\test_validation.py .                                              [23/23]
 Name                   Stmts   Miss  Cover   Missing
 ----------------------------------------------------
 app\__init__.py            0      0   100%
-app\main.py               50      1    98%   27
+app\main.py               50      0   100%
 app\prediction.py         10      1    90%   13
 app\preprocessing.py       6      0   100%
 app\training.py           29      4    86%   33-36
 app\validation.py          9      0   100%
 ----------------------------------------------------
-TOTAL                    104      6    94%
+TOTAL                    104      5    95%
 Coverage XML written to file reports/preuves/coverage.xml
 
-================== 22 passed, 1 skipped, 1 warning in 0.27s ===================
+================== 51 passed, 1 skipped, 1 warning in 0.60s ===================

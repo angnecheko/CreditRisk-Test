@@ -1,9 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor
-from copy import deepcopy
+import argparse
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from time import perf_counter
-from unittest.mock import patch
 import importlib.metadata as md
 import json
 import os
@@ -12,7 +11,6 @@ import sys
 import joblib
 import numpy as np
 from fastapi.testclient import TestClient
-from sklearn.pipeline import Pipeline
 from sklearn.metrics import recall_score, f1_score, confusion_matrix
 from app.main import creer_app
 from app.prediction import predire
@@ -39,24 +37,17 @@ protocole = dict(
     concurrence=[1, 4, 8],
     requetes_par_palier=240,
 )
-root = Path("reports")
+parser = argparse.ArgumentParser()
+parser.add_argument("--output-dir", type=Path, required=True)
+root = parser.parse_args().output_dir
+root.mkdir(parents=True, exist_ok=True)
+if any((root / name).exists() for name in ("protocole.json", "mesures.json")):
+    parser.error("Le dossier contient déjà des résultats. Choisir un nouveau dossier.")
 (root / "protocole.json").write_text(
     json.dumps(protocole, ensure_ascii=False, indent=2), encoding="utf-8"
 )
-train = {}
-fit = Pipeline.fit
-
-
-def record(self, x, y):
-    train.update(x=x.copy(), y=y.copy())
-    return fit(self, x, y)
-
-
-with patch.object(Pipeline, "fit", record):
-    ref = entrainer_reference()
-candidate = deepcopy(ref)
-candidate["version"] = "1.0.1"
-candidate["modele"].set_params(logisticregression__C=0.5).fit(train["x"], train["y"])
+ref = entrainer_reference()
+candidate = entrainer_reference(regularisation=0.5, version="1.0.1")
 rng = np.random.default_rng(protocole["graine_evaluation"])
 n = protocole["taille"]
 age, rev, amount, duration, seniority = [
@@ -195,9 +186,10 @@ with TemporaryDirectory() as tmp:
         obs(c, "model-info absent", path="/model-info")
 a, b = result["metrics"].values()
 result["non_regression_ok"] = bool(
-    b["rappel"] >= a["rappel"] - 0.02
-    and b["f1"] >= a["f1"] - 0.02
-    and max(a["delta_rechargement"], b["delta_rechargement"]) <= 1e-12
+    b["rappel"] >= a["rappel"] - protocole["baisse_max_rappel"]
+    and b["f1"] >= a["f1"] - protocole["baisse_max_f1"]
+    and max(a["delta_rechargement"], b["delta_rechargement"])
+    <= protocole["delta_max_rechargement"]
 )
 (root / "mesures.json").write_text(
     json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
@@ -209,3 +201,5 @@ print(
         indent=2,
     )
 )
+if not result["non_regression_ok"]:
+    sys.exit("Non-regression: seuil de tolerance depasse. Consulter mesures.json.")

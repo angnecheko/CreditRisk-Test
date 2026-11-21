@@ -1,4 +1,4 @@
-﻿# Rapport final de qualification
+# Rapport final de qualification
 
 **CreditRisk-Test · Évaluation formative 2**  
 **Armand Alvain NGNECHEKO**
@@ -17,7 +17,7 @@ Le [plan de test](01_plan_de_test.md) relie 13 exigences à des cas et à un ris
 
 ## Tests fonctionnels et intégration
 
-La suite locale compte **22 tests réussis**, **1 test volontaire ignoré** et **94 % de couverture**. Les dix scénarios obligatoires de l’API ont donné les codes et réponses attendus. Le test d’intégration nominal confirme le score du pipeline et sa version. Les trois erreurs injectées retournent un message générique et un statut 500. Le [tableau des résultats](02_tests_et_integration.md) détaille les scénarios.
+La suite locale compte **51 tests réussis**, **1 test volontaire ignoré** et **95 % de couverture**. Les dix scénarios obligatoires de l’API ont donné les codes et réponses attendus. Le test d’intégration nominal confirme le score du pipeline et sa version. Les quatre erreurs injectées retournent un message générique et un statut 500. Un artefact incompatible est rejeté avec un statut 503. Le [tableau des résultats](02_tests_et_integration.md) détaille les scénarios.
 
 ![Sortie locale réelle de Pytest](figures/pytest.png)
 
@@ -27,7 +27,7 @@ Les entrées absentes, non numériques, non finies et mal structurées sont reje
 
 ## Non-régression
 
-La référence 1.0.0 obtient un rappel de 54,52 % et un F1-score de 61,99 %. Le candidat expérimental 1.0.1 maintient le rappel et atteint 62,09 % en F1. L’écart après rechargement est nul sur les 1 000 cas pour les deux versions. Les tolérances de comparaison sont respectées. Le [rapport de non-régression](04_non_regression.md) précise la portée des vérifications.
+La référence 1.0.0 obtient un rappel de 54,52 % et un F1-score de 61,99 %. Le candidat expérimental 1.0.1 maintient le rappel et atteint 62,09 % en F1. L’écart après rechargement est nul sur les 1 000 cas pour les deux versions. Les tolérances de comparaison sont respectées. La sélection API, intégration et robustesse du candidat totalise 25 succès, dont le test commun d’artefact absent. Le [rapport de non-régression](04_non_regression.md) précise la portée des vérifications.
 
 ![Métriques de comparaison et matrice de confusion](figures/non-regression.png)
 
@@ -39,7 +39,7 @@ Le P95 HTTP en processus passe de 1,38 ms à 9,68 ms entre 1 et 8 clients concur
 
 ## Automatisation
 
-Le workflow a réussi sur push. Le déclenchement manuel avec échec volontaire a propagé le code 1 dans GitHub Actions et a conservé les artefacts. Les deux exécutions et l’extrait du journal sont liés dans le [rapport d’intégration continue](06_integration_continue.md).
+Le workflow a réussi sur push pour le commit initial. Les résultats de la version enrichie proviennent d’une exécution locale. Le déclenchement manuel avec échec volontaire a propagé le code 1 dans GitHub Actions et a conservé les artefacts. Les deux exécutions et l’extrait du journal sont liés dans le [rapport d’intégration continue](06_integration_continue.md).
 
 ![Preuves des exécutions GitHub Actions](figures/ci.png)
 
