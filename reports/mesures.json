@@ -1,0 +1,349 @@
+{
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.2",
+    "cpu": "Intel64 Family 6 Model 189 Stepping 1, GenuineIntel",
+    "logical_cpus": 8,
+    "packages": {
+      "fastapi": "0.115.12",
+      "scikit-learn": "1.9.1",
+      "numpy": "2.5.5",
+      "httpx": "0.28.1",
+      "uvicorn": "0.34.2"
+    }
+  },
+  "observations": {
+    "valide": {
+      "http": 200,
+      "reponse": {
+        "probabilite_defaut": 0.454322558662784,
+        "niveau_risque": "faible",
+        "version_modele": "1.0.0"
+      }
+    },
+    "health": {
+      "http": 200,
+      "reponse": {
+        "statut": "disponible"
+      }
+    },
+    "model-info": {
+      "http": 200,
+      "reponse": {
+        "version": "1.0.0",
+        "variables": [
+          "age",
+          "revenu_mensuel",
+          "montant_credit",
+          "duree_mois",
+          "anciennete_activite"
+        ]
+      }
+    },
+    "manquant": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "age"
+            ],
+            "type": "missing"
+          }
+        ]
+      }
+    },
+    "age negatif": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "age"
+            ],
+            "type": "greater_than_equal"
+          }
+        ]
+      }
+    },
+    "revenu texte": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "revenu_mensuel"
+            ],
+            "type": "float_type"
+          }
+        ]
+      }
+    },
+    "montant nul": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "montant_credit"
+            ],
+            "type": "greater_than"
+          }
+        ]
+      }
+    },
+    "montant negatif": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "montant_credit"
+            ],
+            "type": "greater_than"
+          }
+        ]
+      }
+    },
+    "duree fractionnaire": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "duree_mois"
+            ],
+            "type": "int_type"
+          }
+        ]
+      }
+    },
+    "extra": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "extra"
+            ],
+            "type": "extra_forbidden"
+          }
+        ]
+      }
+    },
+    "montant extreme": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "montant_credit"
+            ],
+            "type": "less_than_equal"
+          }
+        ]
+      }
+    },
+    "age min": {
+      "http": 200,
+      "reponse": {
+        "probabilite_defaut": 0.45055481485992827,
+        "niveau_risque": "faible",
+        "version_modele": "1.0.0"
+      }
+    },
+    "age max": {
+      "http": 200,
+      "reponse": {
+        "probabilite_defaut": 0.4687732350970706,
+        "niveau_risque": "faible",
+        "version_modele": "1.0.0"
+      }
+    },
+    "hors distribution": {
+      "http": 200,
+      "reponse": {
+        "probabilite_defaut": 1.0,
+        "niveau_risque": "eleve",
+        "version_modele": "1.0.0"
+      }
+    },
+    "coherence age anciennete": {
+      "http": 200,
+      "reponse": {
+        "probabilite_defaut": 0.04810167493099745,
+        "niveau_risque": "faible",
+        "version_modele": "1.0.0"
+      }
+    },
+    "inf": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "revenu_mensuel"
+            ],
+            "type": "finite_number"
+          }
+        ]
+      }
+    },
+    "-inf": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "revenu_mensuel"
+            ],
+            "type": "finite_number"
+          }
+        ]
+      }
+    },
+    "NaN": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              "revenu_mensuel"
+            ],
+            "type": "finite_number"
+          }
+        ]
+      }
+    },
+    "schema liste": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body"
+            ],
+            "type": "model_attributes_type"
+          }
+        ]
+      }
+    },
+    "JSON mal forme": {
+      "http": 422,
+      "reponse": {
+        "detail": [
+          {
+            "loc": [
+              "body",
+              1
+            ],
+            "type": "json_invalid"
+          }
+        ]
+      }
+    },
+    "modele absent": {
+      "http": 503,
+      "reponse": {
+        "detail": "Modèle indisponible"
+      }
+    },
+    "health absent": {
+      "http": 503,
+      "reponse": {
+        "detail": "Modèle indisponible"
+      }
+    },
+    "model-info absent": {
+      "http": 503,
+      "reponse": {
+        "detail": "Modèle indisponible"
+      }
+    }
+  },
+  "metrics": {
+    "1.0.0": {
+      "rappel": 0.5452054794520548,
+      "f1": 0.6199376947040498,
+      "matrice": [
+        [
+          557,
+          78
+        ],
+        [
+          166,
+          199
+        ]
+      ],
+      "delta_rechargement": 0.0,
+      "http": {
+        "probabilite_defaut": 0.454322558662784,
+        "niveau_risque": "faible",
+        "version_modele": "1.0.0"
+      }
+    },
+    "1.0.1": {
+      "rappel": 0.5452054794520548,
+      "f1": 0.6209048361934477,
+      "matrice": [
+        [
+          558,
+          77
+        ],
+        [
+          166,
+          199
+        ]
+      ],
+      "delta_rechargement": 0.0,
+      "http": {
+        "probabilite_defaut": 0.4535762133386225,
+        "niveau_risque": "faible",
+        "version_modele": "1.0.1"
+      }
+    }
+  },
+  "performance": [
+    {
+      "concurrence": 1,
+      "erreurs": 0,
+      "n": 240,
+      "median_ms": 0.8343999943463132,
+      "p95_ms": 1.3766050047706813,
+      "debit": 1106.9431625754596
+    },
+    {
+      "concurrence": 4,
+      "erreurs": 0,
+      "n": 240,
+      "median_ms": 3.4505999938119203,
+      "p95_ms": 5.688649998046457,
+      "debit": 1007.3693263185976
+    },
+    {
+      "concurrence": 8,
+      "erreurs": 0,
+      "n": 240,
+      "median_ms": 7.153699989430606,
+      "p95_ms": 9.679950008285232,
+      "debit": 1089.276166862847
+    }
+  ],
+  "inference": {
+    "n": 500,
+    "median_ms": 0.1357000001007691,
+    "p95_ms": 0.23281999747268853
+  },
+  "non_regression_ok": true
+}

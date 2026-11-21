@@ -1,0 +1,24 @@
+﻿F                                                                        [100%]
+================================== FAILURES ===================================
+____________________________ test_echec_volontaire ____________________________
+
+    @pytest.mark.skipif(
+        os.environ.get("CREDITRISK_ECHEC_VOLONTAIRE") != "1",
+        reason="Scénario dédié à la vérification de la CI",
+    )
+    def test_echec_volontaire():
+>       assert False, "Échec volontaire demandé pour vérifier la CI"
+E       AssertionError: Échec volontaire demandé pour vérifier la CI
+E       assert False
+
+tests\test_regression.py:26: AssertionError
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\testclient.py:37
+  C:\Users\ANGNECHEKO\Documents\M2\M2-cours\Test Logiciel\Evaluation_2\CreditRisk-Test\.venv\Lib\site-packages\starlette\testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_regression.py::test_echec_volontaire - AssertionError: Éche...
+1 failed, 1 deselected, 1 warning in 0.16s
+Code de sortie : 1

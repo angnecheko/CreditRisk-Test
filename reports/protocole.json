@@ -1,0 +1,17 @@
+{
+  "graine_evaluation": 2026,
+  "taille": 1000,
+  "candidat": "1.0.1 expérimental : C=0.5",
+  "seuil": 0.5,
+  "baisse_max_rappel": 0.02,
+  "baisse_max_f1": 0.02,
+  "delta_max_rechargement": 1e-12,
+  "p95_http_ms_max": 100,
+  "debit_requetes_s_min": 20,
+  "concurrence": [
+    1,
+    4,
+    8
+  ],
+  "requetes_par_palier": 240
+}

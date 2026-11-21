@@ -1,0 +1,9 @@
+﻿tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:52.4169149Z   CREDITRISK_ECHEC_VOLONTAIRE: 1
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.5678958Z ____________________________ test_echec_volontaire _____________________________
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.5680166Z         os.environ.get("CREDITRISK_ECHEC_VOLONTAIRE") != "1",
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.5682070Z     def test_echec_volontaire():
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.5682890Z >       assert False, "Échec volontaire demandé pour vérifier la CI"
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.5683787Z E       AssertionError: Échec volontaire demandé pour vérifier la CI
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.5695310Z FAILED tests/test_regression.py::test_echec_volontaire - AssertionError: Échec volontaire demandé pour vérifier la CI
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.5696151Z =================== 1 failed, 22 passed, 1 warning in 0.50s ====================
+tests	Exécuter Pytest et mesurer la couverture	2026-11-21T19:58:55.7779122Z ##[error]Process completed with exit code 1.
